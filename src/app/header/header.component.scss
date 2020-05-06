@@ -1,0 +1,168 @@
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+
+nav {
+    line-height: 78px;
+    width: 100%;
+    border-bottom: 1px solid #e6e6e6;
+    background: #ffffff;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.left-side-nav,
+.right-side-nav {
+    display: flex;
+    align-items: center;
+}
+
+.left-side-nav {
+    .nav-title {
+        font-size: 22px;
+        color: white;
+        padding: 0 25px;
+        background-color: #e6e6e6;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+        padding: 0 25px;
+        border-right: 1px solid #e6e6e6;
+        font-size: 20px;
+        border-left: 1px solid white;
+
+        &:hover,
+        &:active {
+            background-color: #e6e6e6;
+            color: white;
+        }
+    }
+
+    form {
+        padding: 0 5px;
+        border-right: 1px solid #e6e6e6;
+    }
+    
+    input[type=text] {
+        border: none;
+        outline: none;
+        text-align: center;
+        font-size: 15px;
+        max-width: 150px;
+        line-height: 36px;
+    }
+}
+
+.menu-bar {
+    display: none;
+}
+
+.dropdown-menu {
+    display: none;
+}
+
+.nav-title-menu {
+    display: none;
+}
+
+.nav-button-gb,
+.nav-button-us {
+    height: 100%;
+    width: 78px;
+    background-color: white;
+    color: black;
+    outline: none;
+    border-color: #e6e6e6;
+    border-width: 0 0 0 1px;
+    font-weight: 600;
+    cursor: pointer;
+
+    &:hover,
+    &:active {
+        background-color: #e6e6e6;
+        color: white;
+        border: none;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .menu-bar {
+        display: block;
+    }
+
+    .nav-title-menu {
+        display: block;
+        font-size: 22px;
+        color: white;
+        padding: 0 25px;
+        background-color: #e6e6e6;
+    }
+
+    .left-side-nav,
+    .right-side-nav {
+        display: none;
+    }
+
+    .dropdown-menu {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        border-bottom: 1px solid #e6e6e6;
+
+        a {
+            text-decoration: none;
+            color: black;
+            font-size: 20px;
+            margin-bottom: 15 0px;
+    
+            &:hover,
+            &:active {
+                color: #3f51b5;
+            }
+        }
+
+        form {
+            margin: 15px 0;
+        }
+        
+        input[type=text] {
+            border: none;
+            outline: none;
+            text-align: center;
+            font-size: 15px;
+            max-width: 150px;
+            line-height: 36px;
+        }
+    }
+
+    .dropbtn {
+        height: 100%;
+        width: 78px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-left: 1px solid #e6e6e6;
+
+        &:hover,
+        &:active {
+            background-color: #e6e6e6;
+            color: white;
+        }
+    }
+
+    .fa-bars {
+        cursor: pointer;
+        font-size: 19px;
+    }
+}
