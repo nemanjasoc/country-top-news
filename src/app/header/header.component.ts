@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../service/data.service';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
   showDropdownMenu: boolean = false;
 
-  constructor() { }
+  constructor(public dataService: DataService) { }
 
   ngOnInit(): void {
+  }
+
+  countryUS(): void {
+    this.dataService.countryAbbreviation = "us";
+    this.dataService.countryName = "United States";
+  }
+
+  countryGB(): void {
+    this.dataService.countryAbbreviation = "gb";
+    this.dataService.countryName = "Great Britain";
   }
 
 }

@@ -1,28 +1,26 @@
 <header>
     <nav>
-        <div class="nav-container">
-            <span class="nav-title-menu">Top News</span>
-            <div class="left-side-nav">
-                <span class="nav-title">Top News</span>
-                <a href="">Categories</a>
-                <form>
-                    <input type="text" placeholder="Search">
-                </form>
-            </div>
+        <span class="nav-title-menu">Top News</span>
+        <div class="left-side-nav">
+            <span class="nav-title">Top News</span>
+            <a href="">Categories</a>
+            <form>
+                <input type="text" placeholder="Search">
+            </form>
+        </div>
 
-            <div class="right-side-nav">
-                <button class="nav-button-gb">GB</button>
-                <button class="nav-button-us">US</button>
-            </div>
+        <div class="right-side-nav">
+            <button class="nav-button-gb" (click)="countryGB()">GB</button>
+            <button class="nav-button-us" (click)="countryUS()">US</button>
+        </div>
 
-            <div class="menu-bar">
-                <div class="dropbtn">
-                    <i class="fa fa-bars" aria-hidden="true" (click)="showDropdownMenu = !showDropdownMenu"></i>
-                </div>
+        <div class="menu-bar">
+            <div class="dropbtn">
+                <i class="fa fa-bars" aria-hidden="true" (click)="showDropdownMenu = !showDropdownMenu"></i>
             </div>
         </div>
     </nav>
-  
+
     <div class="dropdown-menu" *ngIf="showDropdownMenu">
         <a href="">Categories</a>
         <form>
