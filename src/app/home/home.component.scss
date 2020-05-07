@@ -16,6 +16,7 @@
 .top-news {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .news {
@@ -49,11 +50,12 @@
     display: flex;
     text-align: justify;
     margin: 10px;
-    font-size: 15px;
+    font-size: 13px;
+    font-weight: 600;
 }
 
 .news-content {
     text-align: justify;
     margin: 10px;
-    font-size: 12px;
+    font-size: 11px;
 }

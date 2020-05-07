@@ -78,8 +78,7 @@ nav {
     font-weight: 600;
     cursor: pointer;
 
-    &:hover,
-    &:active {
+    &.active {
         background-color: #e6e6e6;
         color: white;
         border: none;
@@ -141,8 +140,7 @@ nav {
         align-items: center;
         border-left: 1px solid #e6e6e6;
 
-        &:hover,
-        &:active {
+        &.active {
             background-color: #e6e6e6;
             color: white;
         }
@@ -151,5 +149,14 @@ nav {
     .fa-bars {
         cursor: pointer;
         font-size: 19px;
+    }
+
+    .buttons {
+        button {
+            &.active {
+                color: white;
+                background-color: #e6e6e6;
+            }
+        }
     }
 }

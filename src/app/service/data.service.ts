@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, Subject } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { Articles } from '../home/home'
 
@@ -9,9 +9,34 @@ import { Articles } from '../home/home'
 })
 
 export class DataService {
-    countryName: string;
+    countryName: string = 'Great Britain:';
+    activeGB: boolean = true;
+    activeUS: boolean = false;
+
+    private countryChangedSubject = new Subject<string>();
 
     constructor(public http: HttpClient) { }
+
+    countryChangedObservable(): Observable<string> {
+      return this.countryChangedSubject.asObservable();
+    }
+
+    countryChangedNotify(country: string) {
+      return this.countryChangedSubject.next(country);
+    }
+
+    setCountry(country: string) {
+      this.countryChangedNotify(country);
+      if (country === 'gb') {
+        this.countryName = 'Great Britain:';
+        this.activeUS = false;
+        this.activeGB = true;
+      } else {
+        this.countryName = 'United States:';
+        this.activeGB = false;
+        this.activeUS = true;
+      }
+    }
 
     getCountryTopNews(countryAbbreviation: string): Observable<Articles[]> {
         return this.http.get<Articles[]>(`https://newsapi.org/v2/top-headlines?country=${countryAbbreviation}&apiKey=cf9c0a24aed7448aaafaef9313c9f39f`).pipe(

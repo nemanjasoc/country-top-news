@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { DataService } from '../service/data.service';
 
 @Component({
@@ -6,22 +6,13 @@ import { DataService } from '../service/data.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   showDropdownMenu: boolean = false;
 
   constructor(public dataService: DataService) { }
 
-  ngOnInit(): void {
-  }
-
-  countryUS(): void {
-    this.dataService.countryAbbreviation = "us";
-    this.dataService.countryName = "United States";
-  }
-
-  countryGB(): void {
-    this.dataService.countryAbbreviation = "gb";
-    this.dataService.countryName = "Great Britain";
+  onClickCountry(country: string) {
+    this.dataService.setCountry(country);
   }
 
 }
