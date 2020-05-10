@@ -4,14 +4,13 @@ import { DataService } from '../service/data.service';
 import { Articles } from './home';
 
 @Component({
-  selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
   articles: Articles[];
   errorMessage: string;
-
+  
   countryChangedSubscription: Subscription;
 
   constructor(public dataService: DataService) { }
@@ -31,6 +30,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   refreshData(country: string) {
     this.dataService.getCountryTopNews(country).subscribe((news: any) => {
       this.articles = news.articles.slice(0, 5);
+      console.log("articles: ", this.articles)
+      this.dataService.articles = this.articles;
+      //console.log("articless: ", this.dataService.articles)
     }, err => this.errorMessage = err)
   }
 

@@ -5,55 +5,56 @@ import { catchError, tap } from 'rxjs/operators';
 import { Articles } from '../home/home'
 
 @Injectable({
-    providedIn: "root"
+  providedIn: "root"
 })
 
 export class DataService {
-    countryName: string = 'Great Britain:';
-    activeGB: boolean = true;
-    activeUS: boolean = false;
+  countryName: string = 'Great Britain:';
+  activeGB: boolean = true;
+  activeUS: boolean = false;
+  articles: any;
 
-    private countryChangedSubject = new Subject<string>();
+  private countryChangedSubject = new Subject<string>();
 
-    constructor(public http: HttpClient) { }
+  constructor(public http: HttpClient) { }
 
-    countryChangedObservable(): Observable<string> {
-      return this.countryChangedSubject.asObservable();
+  countryChangedObservable(): Observable<string> {
+    return this.countryChangedSubject.asObservable();
+  }
+
+  countryChangedNotify(country: string) {
+    return this.countryChangedSubject.next(country);
+  }
+
+  setCountry(country: string) {
+    this.countryChangedNotify(country);
+    if (country === 'gb') {
+      this.countryName = 'Great Britain:';
+      this.activeUS = false;
+      this.activeGB = true;
+    } else {
+      this.countryName = 'United States:';
+      this.activeGB = false;
+      this.activeUS = true;
     }
+  }
 
-    countryChangedNotify(country: string) {
-      return this.countryChangedSubject.next(country);
-    }
+  getCountryTopNews(countryAbbreviation: string): Observable<Articles[]> {
+    return this.http.get<Articles[]>(`https://newsapi.org/v2/top-headlines?country=${countryAbbreviation}&apiKey=cf9c0a24aed7448aaafaef9313c9f39f`).pipe(
+      tap(data => JSON.stringify(data)),
+      catchError(this.handleError)
+    )
+  }
 
-    setCountry(country: string) {
-      this.countryChangedNotify(country);
-      if (country === 'gb') {
-        this.countryName = 'Great Britain:';
-        this.activeUS = false;
-        this.activeGB = true;
-      } else {
-        this.countryName = 'United States:';
-        this.activeGB = false;
-        this.activeUS = true;
-      }
+  public handleError(err: HttpErrorResponse) {
+    let errorMessage = '';
+    if (err.error instanceof ErrorEvent) {
+      errorMessage = `An error ocured: ${err.error.message}`
+    } else {
+      errorMessage = `Server return code: ${err.status}, error message is: ${err.message}`;
     }
-
-    getCountryTopNews(countryAbbreviation: string): Observable<Articles[]> {
-        return this.http.get<Articles[]>(`https://newsapi.org/v2/top-headlines?country=${countryAbbreviation}&apiKey=cf9c0a24aed7448aaafaef9313c9f39f`).pipe(
-            tap(data => JSON.stringify(data)),
-            catchError(this.handleError)
-        )
-    }
-
-    public handleError(err: HttpErrorResponse) {
-        let errorMessage = '';
-        if (err.error instanceof ErrorEvent) {
-            errorMessage = `An error ocured: ${err.error.message}`
-        } else {
-            errorMessage = `Server return code: ${err.status}, error message is: ${err.message}`;
-        }
-        console.error(errorMessage);
-        return throwError(errorMessage);
-    }
+    console.error(errorMessage);
+    return throwError(errorMessage);
+  }
 
 }
