@@ -1,13 +1,15 @@
+@import 'src/scss/mixins';
+
 header {
     line-height: 78px;
     width: 100%;
-    background: #ffffff;
+    background-color: #2e2873;
+    border-bottom: 1px solid #e6e6e6;
 }
 
 nav {
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid #e6e6e6;
 }
 
 .left-side-nav,
@@ -19,38 +21,35 @@ nav {
 .left-side-nav {
     .nav-title {
         font-size: 22px;
+        color: #2e2873;
+        padding: 0 25px;
+        background-color: white;
+        border-right: 1px solid #2e2873;
+    }
+
+    .categories-link {
+        text-decoration: none;
         color: white;
         padding: 0 25px;
-        background-color: #e6e6e6;
-    }
-
-    a {
-        text-decoration: none;
-        color: black;
-        padding: 0 25px;
-        border-right: 1px solid #e6e6e6;
         font-size: 20px;
-        border-left: 1px solid white;
+        border-right: 1px solid #2e2873;
 
-        &:hover,
-        &:active {
-            background-color: #e6e6e6;
-            color: white;
+        &.active {
+            background-color: white;
+            color: #2e2873;
         }
-    }
-
-    form {
-        padding: 0 5px;
-        border-right: 1px solid #e6e6e6;
     }
     
     input[type=text] {
         border: none;
         outline: none;
         text-align: center;
-        font-size: 15px;
+        font-size: 17px;
         max-width: 150px;
-        line-height: 36px;
+        line-height: 76px;
+        padding: 0 5px;
+        background-color: #222873;
+        color: white;
     }
 }
 
@@ -70,8 +69,8 @@ nav {
 .nav-button-us {
     height: 100%;
     width: 78px;
-    background-color: white;
-    color: black;
+    background-color: #2e2873;
+    color: white;
     outline: none;
     border-color: #e6e6e6;
     border-width: 0 0 0 1px;
@@ -79,9 +78,45 @@ nav {
     cursor: pointer;
 
     &.active {
-        background-color: #e6e6e6;
-        color: white;
+        background-color: white;
+        color: #2e2873;
         border: none;
+    }
+}
+
+.home-link {
+    display: flex;
+    justify-content: center;
+    color: white;
+    border-left: 1px solid white;
+    width: 78px;
+    position: relative;
+    text-decoration: none;
+    cursor: pointer;
+    @include transition(all 0.3s ease-in-out 0s);
+
+    &:before {
+        content: '';
+        position: absolute;
+        width: 42px;
+        height: 1px;
+        top: 50px;
+        background-color: white;
+        visibility: hidden;
+        @include transform(scaleX(0));
+        @include transition(all 0.3s ease-in-out 0s);
+    }
+
+    &.active,
+    &:hover {
+        &:before {
+            visibility: visible;
+            @include transform(scaleX(1));
+        }
+    }
+
+    &.active {
+        color: white;
     }
 }
 
@@ -93,9 +128,10 @@ nav {
     .nav-title-menu {
         display: block;
         font-size: 22px;
-        color: white;
+        color: #2e2873;
         padding: 0 25px;
-        background-color: #e6e6e6;
+        background-color: white;
+        border-right: 1px solid #2e2873;
     }
 
     .left-side-nav,
@@ -108,13 +144,13 @@ nav {
         justify-content: center;
         flex-direction: column;
         align-items: center;
-        border-bottom: 1px solid #e6e6e6;
+        border-top: 1px solid #e6e6e6;
+        padding: 20px 0;
 
-        a {
+        .categories-link  {
             text-decoration: none;
-            color: black;
+            color: white;
             font-size: 20px;
-            margin-bottom: 15 0px;
     
             &:hover,
             &:active {
@@ -129,6 +165,17 @@ nav {
             font-size: 15px;
             max-width: 150px;
             line-height: 36px;
+            color: #2e2873;
+            padding: 0 5px;
+        }
+
+        .home-link {
+            border: none;
+            font-size: 20px;
+            
+            &:before {
+                width: 52px;
+            }
         }
     }
 
@@ -141,21 +188,33 @@ nav {
         border-left: 1px solid #e6e6e6;
 
         &.active {
-            background-color: #e6e6e6;
-            color: white;
+            background-color: white;
+
+            .fa-bars {
+                color: #2e2873;
+            }
         }
     }
 
     .fa-bars {
         cursor: pointer;
         font-size: 19px;
+        color: white;
     }
 
     .buttons {
+        display: flex;
+        justify-content: space-between;
+        width: 150px;
+        margin-bottom: 20px;
+
         button {
+            border: 1px solid white;
+            color: white;
+
             &.active {
-                color: white;
-                background-color: #e6e6e6;
+                color: #2e2873;
+                background-color: white;
             }
         }
     }

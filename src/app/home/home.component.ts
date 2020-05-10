@@ -28,11 +28,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   refreshData(country: string) {
-    this.dataService.getCountryTopNews(country).subscribe((news: any) => {
-      this.articles = news.articles.slice(0, 5);
-      console.log("articles: ", this.articles)
-      this.dataService.articles = this.articles;
-      //console.log("articless: ", this.dataService.articles)
+    this.dataService.getCountryTopNews(country).subscribe(data => {
+      this.articles = data.slice(0, 5);
     }, err => this.errorMessage = err)
   }
 

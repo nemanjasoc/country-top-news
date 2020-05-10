@@ -1,0 +1,33 @@
+section {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 70px;
+}
+
+.thumbnail {
+    border: 1px solid #e6e6e6;
+    padding: 15px;
+    background-color: #e6e6e6;
+}
+
+.article-title {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.article-img {
+    img {
+        width: 100%;
+        margin: 20px 0;
+    }
+}
+
+.article-content {
+    font-size: 18px;
+    line-height: 23px;
+    font-weight: 500;
+}

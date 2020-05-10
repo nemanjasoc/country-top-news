@@ -9,14 +9,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
-import { ArticleComponent } from './home/article.component';
+import { ArticleDetailComponent } from './home/article-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    ArticleComponent
+    ArticleDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +25,7 @@ import { ArticleComponent } from './home/article.component';
     MatButtonModule,
     RouterModule.forRoot([
       { path: 'home', component: HomeComponent },
-      { path: 'home/:id', component: ArticleComponent },
+      { path: 'home/:id', component: ArticleDetailComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: '**', redirectTo: 'home', pathMatch: 'full'}
     ])

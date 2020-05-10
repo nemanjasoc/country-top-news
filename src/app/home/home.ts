@@ -1,7 +1,13 @@
 export interface Articles {
-    title: string,
-    urlToImage: string,
-    description: string,
-    content: string,
-    source: { id: string }
+  customId?: number;
+  title: string;
+  urlToImage: string;
+  description: string;
+  content: string;
+}
+
+export interface News {
+  articles: Articles[];
+  status: string;
+  totalResults: number;
 }

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError, Subject } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
-import { Articles } from '../home/home'
+import { catchError, map, tap } from 'rxjs/operators';
+import { Articles, News } from '../home/home'
 
 @Injectable({
   providedIn: "root"
@@ -12,7 +12,7 @@ export class DataService {
   countryName: string = 'Great Britain:';
   activeGB: boolean = true;
   activeUS: boolean = false;
-  articles: any;
+  allArticles: Articles[];
 
   private countryChangedSubject = new Subject<string>();
 
@@ -40,10 +40,17 @@ export class DataService {
   }
 
   getCountryTopNews(countryAbbreviation: string): Observable<Articles[]> {
-    return this.http.get<Articles[]>(`https://newsapi.org/v2/top-headlines?country=${countryAbbreviation}&apiKey=cf9c0a24aed7448aaafaef9313c9f39f`).pipe(
-      tap(data => JSON.stringify(data)),
-      catchError(this.handleError)
-    )
+    return this.http.get<News>(`https://newsapi.org/v2/top-headlines?country=${countryAbbreviation}&apiKey=cf9c0a24aed7448aaafaef9313c9f39f`)
+      .pipe(
+        map(data => {
+          return data.articles.map((item, index) => {
+            item.customId = index + 1;
+            return item;
+          })
+        }),
+        tap(data => this.allArticles = data),
+        catchError(this.handleError)
+      )
   }
 
   public handleError(err: HttpErrorResponse) {

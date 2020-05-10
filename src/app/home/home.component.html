@@ -7,10 +7,13 @@
         <div class="news" *ngFor="let article of articles">
             <span class="news-title">{{ article.title }}</span>
             <div class="img-wrapper">
-                <img [src]="article.urlToImage">
+                <img *ngIf="article.urlToImage !== null" [src]="article.urlToImage">
+                <span class="error-message" *ngIf="article.urlToImage === null">
+                    Image doesn't exist
+                </span>
             </div>
             <p class="news-content">{{ article.description }}</p>
-            <a [routerLink]="['/home', article.source.id]">More ></a>
+            <a [routerLink]="['/home', article.customId]">More ></a>
         </div>
     </div>
 </div>

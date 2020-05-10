@@ -3,7 +3,7 @@
         <span class="nav-title-menu">Top News</span>
         <div class="left-side-nav">
             <span class="nav-title">Top News</span>
-            <a href="">Categories</a>
+            <a class="categories-link" href="">Categories</a>
             <form>
                 <input type="text" placeholder="Search">
             </form>
@@ -12,6 +12,7 @@
         <div class="right-side-nav">
             <button class="nav-button-gb" (click)="onClickCountry('gb')" [class.active]="dataService.activeGB">GB</button>
             <button class="nav-button-us" (click)="onClickCountry('us')" [class.active]="dataService.activeUS">US</button>
+            <a class="home-link" [routerLink]="['/home']">Home</a>
         </div>
 
         <div class="menu-bar">
@@ -22,7 +23,7 @@
     </nav>
 
     <div class="dropdown-menu" *ngIf="showDropdownMenu">
-        <a href="">Categories</a>
+        <a class="categories-link" href="">Categories</a>
         <form>
             <input type="text" placeholder="Search">
         </form>
@@ -30,5 +31,6 @@
             <button mat-button (click)="onClickCountry('gb')" [class.active]="dataService.activeGB">GB</button>
             <button mat-button (click)="onClickCountry('us')" [class.active]="dataService.activeUS">US</button>
         </div>
+        <a class="home-link" [routerLink]="['/home']">Home</a>
     </div>
 </header>
