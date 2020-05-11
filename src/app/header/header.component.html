@@ -3,7 +3,7 @@
         <span class="nav-title-menu">Top News</span>
         <div class="left-side-nav">
             <span class="nav-title">Top News</span>
-            <a class="categories-link" href="">Categories</a>
+            <a class="categories-link" [routerLink]="['/categories']">Categories</a>
             <form>
                 <input type="text" placeholder="Search">
             </form>
@@ -12,25 +12,26 @@
         <div class="right-side-nav">
             <button class="nav-button-gb" (click)="onClickCountry('gb')" [class.active]="dataService.activeGB">GB</button>
             <button class="nav-button-us" (click)="onClickCountry('us')" [class.active]="dataService.activeUS">US</button>
-            <a class="home-link" [routerLink]="['/home']">Home</a>
+            <a class="home-link" [routerLink]="['/top-news']">Home</a>
         </div>
 
         <div class="menu-bar">
-            <div class="dropbtn" [class.active]="showDropdownMenu">
-                <i class="fa fa-bars" aria-hidden="true" (click)="showDropdownMenu = !showDropdownMenu"></i>
+            <div class="dropbtn" [class.active]="showDropdownMenu" (click)="showDropdownMenu = !showDropdownMenu">
+                <i class="fa fa-bars" aria-hidden="true" *ngIf="!showDropdownMenu" ></i>
+                <i class="fa fa-times" aria-hidden="true" *ngIf="showDropdownMenu"></i>
             </div>
         </div>
     </nav>
 
     <div class="dropdown-menu" *ngIf="showDropdownMenu">
-        <a class="categories-link" href="">Categories</a>
+        <a class="categories-link" [routerLink]="['/categories']">Categories</a>
         <form>
             <input type="text" placeholder="Search">
         </form>
-        <div class="buttons">
+        <div class="country-buttons-dropdown">
             <button mat-button (click)="onClickCountry('gb')" [class.active]="dataService.activeGB">GB</button>
             <button mat-button (click)="onClickCountry('us')" [class.active]="dataService.activeUS">US</button>
         </div>
-        <a class="home-link" [routerLink]="['/home']">Home</a>
+        <a class="home-link" [routerLink]="['/top-news']">Home</a>
     </div>
 </header>

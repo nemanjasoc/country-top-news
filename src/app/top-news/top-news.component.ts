@@ -1,13 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription, } from 'rxjs';
 import { DataService } from '../service/data.service';
-import { Articles } from './home';
+import { Articles } from './top-news';
 
 @Component({
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  templateUrl: './top-news.component.html',
+  styleUrls: ['./top-news.component.scss']
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class TopNewsComponent implements OnInit, OnDestroy {
   articles: Articles[];
   errorMessage: string;
   

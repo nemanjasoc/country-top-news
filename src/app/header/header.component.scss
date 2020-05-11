@@ -1,15 +1,17 @@
 @import 'src/scss/mixins';
+@import 'src/scss/variables';
 
 header {
-    line-height: 78px;
+    line-height: 70px;
     width: 100%;
-    background-color: #2e2873;
-    border-bottom: 1px solid #e6e6e6;
+    background-color: $header-main-color;
 }
 
 nav {
     display: flex;
     justify-content: space-between;
+    border-bottom: 1px solid $header-border-color;
+    height: 70px;
 }
 
 .left-side-nav,
@@ -21,23 +23,9 @@ nav {
 .left-side-nav {
     .nav-title {
         font-size: 22px;
-        color: #2e2873;
+        color: $header-main-color;
         padding: 0 25px;
         background-color: white;
-        border-right: 1px solid #2e2873;
-    }
-
-    .categories-link {
-        text-decoration: none;
-        color: white;
-        padding: 0 25px;
-        font-size: 20px;
-        border-right: 1px solid #2e2873;
-
-        &.active {
-            background-color: white;
-            color: #2e2873;
-        }
     }
     
     input[type=text] {
@@ -46,61 +34,31 @@ nav {
         text-align: center;
         font-size: 17px;
         max-width: 150px;
-        line-height: 76px;
+        line-height: 70px;
         padding: 0 5px;
-        background-color: #222873;
+        background-color: #252a67;
         color: white;
     }
 }
 
-.menu-bar {
-    display: none;
-}
-
-.dropdown-menu {
-    display: none;
-}
-
-.nav-title-menu {
-    display: none;
-}
-
-.nav-button-gb,
-.nav-button-us {
-    height: 100%;
-    width: 78px;
-    background-color: #2e2873;
-    color: white;
-    outline: none;
-    border-color: #e6e6e6;
-    border-width: 0 0 0 1px;
-    font-weight: 600;
-    cursor: pointer;
-
-    &.active {
-        background-color: white;
-        color: #2e2873;
-        border: none;
-    }
-}
-
+.categories-link,
 .home-link {
     display: flex;
     justify-content: center;
     color: white;
-    border-left: 1px solid white;
-    width: 78px;
+    width: 70px;
     position: relative;
     text-decoration: none;
+    padding: 0 25px;
     cursor: pointer;
     @include transition(all 0.3s ease-in-out 0s);
 
     &:before {
         content: '';
         position: absolute;
-        width: 42px;
+        width: 77px;
         height: 1px;
-        top: 50px;
+        top: 45px;
         background-color: white;
         visibility: hidden;
         @include transform(scaleX(0));
@@ -120,7 +78,50 @@ nav {
     }
 }
 
+.home-link {
+    &:before {
+        width: 42px;
+        border-left: 1px solid white;
+    }
+}
+
+.menu-bar,
+.dropdown-menu,
+.nav-title-menu {
+    display: none;
+}
+
+.nav-button-gb,
+.nav-button-us {
+    height: 100%;
+    width: 70px;
+    background-color: $header-main-color;
+    color: white;
+    outline: none;
+    border-color: $header-border-color;
+    border-width: 0 0 0 1px;
+    font-weight: 600;
+    cursor: pointer;
+    @include transition(all 0.3s ease-in-out 0s);
+
+    &.active {
+        background-color: white;
+        color: $header-main-color;
+        border: none;
+    }
+
+    &.disabled {
+        opacity: 0.2;
+        pointer-events: none;
+    }
+}
+
 @media only screen and (max-width: 768px) {
+    .left-side-nav,
+    .right-side-nav {
+        display: none;
+    }
+
     .menu-bar {
         display: block;
     }
@@ -128,15 +129,9 @@ nav {
     .nav-title-menu {
         display: block;
         font-size: 22px;
-        color: #2e2873;
+        color: $header-main-color;
         padding: 0 25px;
         background-color: white;
-        border-right: 1px solid #2e2873;
-    }
-
-    .left-side-nav,
-    .right-side-nav {
-        display: none;
     }
 
     .dropdown-menu {
@@ -144,17 +139,15 @@ nav {
         justify-content: center;
         flex-direction: column;
         align-items: center;
-        border-top: 1px solid #e6e6e6;
         padding: 20px 0;
 
-        .categories-link  {
-            text-decoration: none;
-            color: white;
-            font-size: 20px;
-    
-            &:hover,
-            &:active {
-                color: #3f51b5;
+        .categories-link,
+        .home-link  {
+            height: 36px;
+            align-items: center;
+
+            &:before {
+                top: 28px;
             }
         }
         
@@ -165,44 +158,39 @@ nav {
             font-size: 15px;
             max-width: 150px;
             line-height: 36px;
-            color: #2e2873;
+            color: $header-main-color;
             padding: 0 5px;
-        }
-
-        .home-link {
-            border: none;
-            font-size: 20px;
-            
-            &:before {
-                width: 52px;
-            }
         }
     }
 
     .dropbtn {
         height: 100%;
-        width: 78px;
+        width: 70px;
         display: flex;
         justify-content: center;
         align-items: center;
-        border-left: 1px solid #e6e6e6;
+        border-left: 1px solid $header-border-color;
+        cursor: pointer;
+        @include transition(all 0.3s ease-in-out 0s);
 
         &.active {
             background-color: white;
 
-            .fa-bars {
-                color: #2e2873;
+            .fa-times {
+                color: $header-main-color;
+                cursor: pointer;
+                font-size: 20px;
             }
         }
     }
 
     .fa-bars {
         cursor: pointer;
-        font-size: 19px;
+        font-size: 20px;
         color: white;
     }
 
-    .buttons {
+    .country-buttons-dropdown {
         display: flex;
         justify-content: space-between;
         width: 150px;
@@ -213,7 +201,7 @@ nav {
             color: white;
 
             &.active {
-                color: #2e2873;
+                color: $header-main-color;
                 background-color: white;
             }
         }
