@@ -1,28 +1,132 @@
 <div class="categories-container">
     <ul class="categories">
-        <li>
-            <span class="entertrainment">Entertainment</span>
-            <i class="fa fa-caret-down" aria-hidden="true"></i>
+        <li *ngFor="let category of categoryNames">
+            <span class="category-name">{{ category.category_name }}</span>
+            <i class="fa fa-caret-down" aria-hidden="true" *ngIf="!showArticles" (click)="onClickCategoryExpand(category.category_name)"></i>
+            <i class="fa fa-caret-up" aria-hidden="true" *ngIf="showArticles" (click)="onClickCategoryCollaps()"></i>
+            <div class="top-news">
+                <div class="news" *ngFor="let article of articles">
+                    <div class="exist" *ngIf="article.customId">
+                        <span class="news-title">{{ article.title }}</span>
+                        <div class="img-wrapper">
+                            <img *ngIf="article.urlToImage !== null" [src]="article.urlToImage">
+                            <span class="error-message" *ngIf="article.urlToImage === null">
+                                Image doesn't exist
+                            </span>
+                        </div>
+                        <p class="news-content">{{ article.description }}</p>
+                        <a [routerLink]="['/categories', article.customId]">More ></a>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <!-- <li>
+            <span class="category-name">Entertainment</span>
+            <i class="fa fa-caret-down" aria-hidden="true" *ngIf="!showArticles" (click)="onClickCategoryExpand('entertainment')"></i>
+            <i class="fa fa-caret-up" aria-hidden="true" *ngIf="showArticles" (click)="onClickCategoryCollaps()"></i>
+            <div class="top-news">
+                <div class="news" *ngFor="let article of articles">
+                    <span class="news-title">{{ article.title }}</span>
+                    <div class="img-wrapper">
+                        <img *ngIf="article.urlToImage !== null" [src]="article.urlToImage">
+                        <span class="error-message" *ngIf="article.urlToImage === null">
+                            Image doesn't exist
+                        </span>
+                    </div>
+                    <p class="news-content">{{ article.description }}</p>
+                    <a href="">More ></a>
+                </div>
+            </div>
         </li>
         <li>
-            <span class="entertrainment">General</span>
-            <i class="fa fa-caret-down" aria-hidden="true"></i>
+            <span class="category-name">General</span>
+            <i class="fa fa-caret-down" aria-hidden="true" *ngIf="!showArticles" (click)="onClickCategoryExpand('general')"></i>
+            <i class="fa fa-caret-up" aria-hidden="true" *ngIf="showArticles" (click)="onClickCategoryCollaps()"></i>
+            <div class="top-news">
+                <div class="news" *ngFor="let article of articles">
+                    <span class="news-title">{{ article.title }}</span>
+                    <div class="img-wrapper">
+                        <img *ngIf="article.urlToImage !== null" [src]="article.urlToImage">
+                        <span class="error-message" *ngIf="article.urlToImage === null">
+                            Image doesn't exist
+                        </span>
+                    </div>
+                    <p class="news-content">{{ article.description }}</p>
+                    <a href="">More ></a>
+                </div>
+            </div>
         </li>
         <li>
-            <span class="entertrainment">Health</span>
-            <i class="fa fa-caret-down" aria-hidden="true"></i>
+            <span class="category-name">Health</span>
+            <i class="fa fa-caret-down" aria-hidden="true" *ngIf="!showArticles" (click)="onClickCategoryExpand('health')"></i>
+            <i class="fa fa-caret-up" aria-hidden="true" *ngIf="showArticles" (click)="onClickCategoryCollaps()"></i>
+            <div class="top-news">
+                <div class="news" *ngFor="let article of articles">
+                    <span class="news-title">{{ article.title }}</span>
+                    <div class="img-wrapper">
+                        <img *ngIf="article.urlToImage !== null" [src]="article.urlToImage">
+                        <span class="error-message" *ngIf="article.urlToImage === null">
+                            Image doesn't exist
+                        </span>
+                    </div>
+                    <p class="news-content">{{ article.description }}</p>
+                    <a href="">More ></a>
+                </div>
+            </div>
         </li>
         <li>
-            <span class="entertrainment">Science</span>
-            <i class="fa fa-caret-down" aria-hidden="true"></i>
+            <span class="category-name">Science</span>
+            <i class="fa fa-caret-down" aria-hidden="true" *ngIf="!showArticles" (click)="onClickCategoryExpand('science')"></i>
+            <i class="fa fa-caret-up" aria-hidden="true" *ngIf="showArticles" (click)="onClickCategoryCollaps()"></i>
+            <div class="top-news">
+                <div class="news" *ngFor="let article of articles">
+                    <span class="news-title">{{ article.title }}</span>
+                    <div class="img-wrapper">
+                        <img *ngIf="article.urlToImage !== null" [src]="article.urlToImage">
+                        <span class="error-message" *ngIf="article.urlToImage === null">
+                            Image doesn't exist
+                        </span>
+                    </div>
+                    <p class="news-content">{{ article.description }}</p>
+                    <a href="">More ></a>
+                </div>
+            </div>
         </li>
         <li>
-            <span class="entertrainment">Sport</span>
-            <i class="fa fa-caret-down" aria-hidden="true"></i>
+            <span class="category-name">Sport</span>
+            <i class="fa fa-caret-down" aria-hidden="true" *ngIf="!showArticles" (click)="onClickCategoryExpand('sport')"></i>
+            <i class="fa fa-caret-up" aria-hidden="true" *ngIf="showArticles" (click)="onClickCategoryCollaps()"></i>
+            <div class="top-news">
+                <div class="news" *ngFor="let article of articles">
+                    <span class="news-title">{{ article.title }}</span>
+                    <div class="img-wrapper">
+                        <img *ngIf="article.urlToImage !== null" [src]="article.urlToImage">
+                        <span class="error-message" *ngIf="article.urlToImage === null">
+                            Image doesn't exist
+                        </span>
+                    </div>
+                    <p class="news-content">{{ article.description }}</p>
+                    <a href="">More ></a>
+                </div>
+            </div>
         </li>
         <li>
-            <span class="entertrainment">Technology</span>
-            <i class="fa fa-caret-down" aria-hidden="true"></i>
-        </li>
+            <span class="category-name">Technology</span>
+            <i class="fa fa-caret-down" aria-hidden="true" *ngIf="!showArticles" (click)="onClickCategoryExpand('technology')"></i>
+            <i class="fa fa-caret-up" aria-hidden="true" *ngIf="showArticles" (click)="onClickCategoryCollaps()"></i>
+            <div class="top-news">
+                <div class="news" *ngFor="let article of articles">
+                    <span class="news-title">{{ article.title }}</span>
+                    <div class="img-wrapper">
+                        <img *ngIf="article.urlToImage !== null" [src]="article.urlToImage">
+                        <span class="error-message" *ngIf="article.urlToImage === null">
+                            Image doesn't exist
+                        </span>
+                    </div>
+                    <p class="news-content">{{ article.description }}</p>
+                    <a href="">More ></a>
+                </div>
+            </div>
+        </li> -->
     </ul>
 </div>

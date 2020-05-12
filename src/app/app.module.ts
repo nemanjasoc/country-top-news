@@ -10,6 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { TopNewsComponent } from './top-news/top-news.component';
 import { ArticleDetailComponent } from './top-news/article-detail.component';
 import { CategoriesComponent } from './categories/categories.component';
+import { CategoryArticleDetailComponent } from './categories/category-article-detail.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CategoriesComponent } from './categories/categories.component';
     HeaderComponent,
     TopNewsComponent,
     ArticleDetailComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    CategoryArticleDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +30,7 @@ import { CategoriesComponent } from './categories/categories.component';
       { path: 'top-news', component: TopNewsComponent },
       { path: 'top-news/:id', component: ArticleDetailComponent },
       { path: 'categories', component: CategoriesComponent },
+      { path: 'categories/:id', component: CategoryArticleDetailComponent },
       { path: '', redirectTo: 'top-news', pathMatch: 'full' },
       { path: '**', redirectTo: 'top-news', pathMatch: 'full'}
     ])

@@ -16,14 +16,24 @@ export class DataService {
 
   private countryChangedSubject = new Subject<string>();
 
+  private categoryChangedSubject = new Subject<string>();
+
   constructor(public http: HttpClient) { }
 
   countryChangedObservable(): Observable<string> {
     return this.countryChangedSubject.asObservable();
   }
 
+  categoryChangedObservable(): Observable<string> {
+    return this.categoryChangedSubject.asObservable();
+  }
+
   countryChangedNotify(country: string) {
     return this.countryChangedSubject.next(country);
+  }
+
+  categoryChangedNotify(category: string) {
+    return this.categoryChangedSubject.next(category);
   }
 
   setCountry(country: string) {
@@ -39,6 +49,10 @@ export class DataService {
     }
   }
 
+  setCategory(category: string) {
+    this.categoryChangedNotify(category);
+  }
+
   getCountryTopNews(countryAbbreviation: string): Observable<Articles[]> {
     return this.http.get<News>(`https://newsapi.org/v2/top-headlines?country=${countryAbbreviation}&apiKey=cf9c0a24aed7448aaafaef9313c9f39f`)
       .pipe(
@@ -51,6 +65,20 @@ export class DataService {
         tap(data => this.allArticles = data),
         catchError(this.handleError)
       )
+  }
+
+  getCategoryTopNews(category: string): Observable<Articles[]> {
+    return this.http.get<News>(`https://newsapi.org/v2/top-headlines?category=${category}&apiKey=cf9c0a24aed7448aaafaef9313c9f39f`)
+    .pipe(
+      map(data => {
+        return data.articles.map((item, index) => {
+          item.customId = index + 1;
+          return item;
+        })
+      }),
+      tap(data => this.allArticles = data),
+      catchError(this.handleError)
+    )
   }
 
   public handleError(err: HttpErrorResponse) {

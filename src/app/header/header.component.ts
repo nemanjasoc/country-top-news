@@ -12,7 +12,7 @@ export class HeaderComponent {
 
   constructor(public dataService: DataService) { }
 
-  onClickCountry(country: string) {
+  onClickCountry(country: string): void {
     this.dataService.setCountry(country);
   }
 
