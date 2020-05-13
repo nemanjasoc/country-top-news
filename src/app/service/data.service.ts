@@ -16,24 +16,16 @@ export class DataService {
 
   private countryChangedSubject = new Subject<string>();
 
-  private categoryChangedSubject = new Subject<string>();
 
   constructor(public http: HttpClient) { }
+
 
   countryChangedObservable(): Observable<string> {
     return this.countryChangedSubject.asObservable();
   }
 
-  categoryChangedObservable(): Observable<string> {
-    return this.categoryChangedSubject.asObservable();
-  }
-
   countryChangedNotify(country: string) {
     return this.countryChangedSubject.next(country);
-  }
-
-  categoryChangedNotify(category: string) {
-    return this.categoryChangedSubject.next(category);
   }
 
   setCountry(country: string) {
@@ -47,10 +39,6 @@ export class DataService {
       this.activeGB = false;
       this.activeUS = true;
     }
-  }
-
-  setCategory(category: string) {
-    this.categoryChangedNotify(category);
   }
 
   getCountryTopNews(countryAbbreviation: string): Observable<Articles[]> {

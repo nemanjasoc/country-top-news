@@ -18,45 +18,37 @@ export class CategoriesComponent implements OnInit {
     { category_name: 'Technology' }
   ]
 
-  articles: Articles[];
+  articles: Articles[] = [];
   errorMessage: string;
-  showArticles: boolean = false;
+  expandedCategory: string;
 
-  categoryChangedSubscription: Subscription;
+  loading = false;
+
 
   constructor(public dataService: DataService) { }
 
   ngOnInit(): void {
-    this.subscribeToCategoryChanged();
     this.refreshData('category');
   }
 
   onClickCategoryExpand(category: string): void {
-    let categoryLowercase = category.toLowerCase();
-    this.dataService.setCategory(categoryLowercase);
-    this.showArticles = true;
+    this.refreshData(category);
+    this.expandedCategory = category
   }
 
   onClickCategoryCollaps(): void {
-    this.showArticles = false;
-    this.articles = null;
+    this.expandedCategory = null;
   }
 
-  subscribeToCategoryChanged() {
-    this.categoryChangedSubscription = this.dataService.categoryChangedObservable()
-      .subscribe(result => {
-        this.refreshData(result);
-      });
-  }
-
-  refreshData(country: string) {
-    this.dataService.getCategoryTopNews(country).subscribe(data => {
+  refreshData(category: string) {
+    this.loading = true;
+    this.dataService.getCategoryTopNews(category).subscribe(data => {
       this.articles = data.slice(0, 5);
-    }, err => this.errorMessage = err)
-  }
-
-  ngOnDestroy() { 
-    this.categoryChangedSubscription.unsubscribe();
+      this.loading = false;
+    }, err =>  {
+      this.errorMessage = err;
+      this.loading = false;
+    })
   }
 
 }
