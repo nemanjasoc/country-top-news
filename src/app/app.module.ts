@@ -5,6 +5,8 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -28,6 +30,8 @@ import { CategoryArticleDetailComponent } from './categories/category-article-de
     HttpClientModule,
     MatButtonModule,
     MatProgressSpinnerModule,
+    MatExpansionModule,
+    SlickCarouselModule,
     RouterModule.forRoot([
       { path: 'top-news', component: TopNewsComponent },
       { path: 'top-news/:id', component: ArticleDetailComponent },

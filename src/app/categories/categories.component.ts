@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from './categories';
 import { DataService } from '../service/data.service';
-import { Subscription } from 'rxjs';
 import { Articles } from '../top-news/top-news';
 
 @Component({
@@ -21,9 +20,9 @@ export class CategoriesComponent implements OnInit {
   articles: Articles[] = [];
   errorMessage: string;
   expandedCategory: string;
+  expanded: boolean = false;
 
   loading = false;
-
 
   constructor(public dataService: DataService) { }
 
@@ -33,11 +32,7 @@ export class CategoriesComponent implements OnInit {
 
   onClickCategoryExpand(category: string): void {
     this.refreshData(category);
-    this.expandedCategory = category
-  }
-
-  onClickCategoryCollaps(): void {
-    this.expandedCategory = null;
+    this.expandedCategory = category;
   }
 
   refreshData(category: string) {
@@ -50,5 +45,14 @@ export class CategoriesComponent implements OnInit {
       this.loading = false;
     })
   }
+
+  slideConfig = {
+    "slidesToShow": 1,
+    "slidesToScroll": 1,
+    "nextArrow": "<div class='nav-btn next-slide'></div>",
+    "prevArrow": "<div class='nav-btn prev-slide'></div>",
+    "dots": true,
+    "infinite": false
+  };
 
 }

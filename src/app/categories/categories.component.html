@@ -1,27 +1,30 @@
-<div class="categories-container">
-    <ul class="categories">
-        <li *ngFor="let category of categoryNames">
-            <span class="category-name">{{ category.category_name }}</span>
-            <i class="fa fa-caret-down" aria-hidden="true" *ngIf="expandedCategory !== category.category_name" (click)="onClickCategoryExpand(category.category_name)"></i>
-            <i class="fa fa-caret-up" aria-hidden="true" *ngIf="expandedCategory === category.category_name" (click)="onClickCategoryCollaps()"></i>
-            
-            <mat-spinner *ngIf="loading && expandedCategory === category.category_name"></mat-spinner>
-            
-            <div *ngIf="expandedCategory === category.category_name && !loading" class="top-news">
-                <div class="news" *ngFor="let article of articles">
-                    <div class="exist" *ngIf="article.customId">
-                        <span class="news-title">{{ article.title }}</span>
-                        <div class="img-wrapper">
-                            <img *ngIf="article.urlToImage !== null" [src]="article.urlToImage">
-                            <span class="error-message" *ngIf="article.urlToImage === null">
-                                Image doesn't exist
-                            </span>
-                        </div>
-                        <p class="news-content">{{ article.description }}</p>
-                        <a [routerLink]="['/categories', article.customId]">More ></a>
+<mat-accordion *ngFor="let category of categoryNames">
+    <mat-expansion-panel (click)="onClickCategoryExpand(category.category_name)">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <span class="category-name">{{ category.category_name }}</span>
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <!-- <mat-spinner *ngIf="loading && expandedCategory === category.category_name"></mat-spinner> -->
+
+        <ngx-slick-carousel 
+            class="carousel" 
+            #slickModal="slick-carousel" 
+            [config]="slideConfig">
+            <div ngxSlickItem *ngFor="let article of articles">
+                <div class="news">
+                    <span class="news-title">{{ article.title }}</span>
+                    <div class="img-wrapper">
+                        <img *ngIf="article.urlToImage !== null" [src]="article.urlToImage">
+                        <span class="error-message" *ngIf="article.urlToImage === null">
+                            Image doesn't exist
+                        </span>
                     </div>
+                    <p class="news-content">{{ article.description }}</p>
+                    <a [routerLink]="['/categories', article.customId]">More ></a>
                 </div>
             </div>
-        </li>
-    </ul>
-</div>
+        </ngx-slick-carousel>
+    </mat-expansion-panel>
+</mat-accordion> 

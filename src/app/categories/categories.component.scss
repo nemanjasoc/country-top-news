@@ -1,40 +1,22 @@
 @import 'src/scss/variables';
 
-.categories-container {
-    display: flex;
-    justify-content: center;
-    height: 100vh;
-    background-color: $header-border-color;
-
-    li {
-        display: block;
-        margin: 30px 0;
-    }
-
-    span {
-        margin-right: 15px;
-        color: $header-main-color;
-        font-size: 17px;
-        font-weight: 600;
-    }
-
-    .fa-caret-down,
-    .fa-caret-up {
-        cursor: pointer;
-    }
+.mat-accordion .mat-expansion-panel:last-of-type {
+    width: 70%;
+    margin: 25px auto;
 }
 
-.top-news {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+.category-name {
+    margin-right: 15px;
+    color: $header-main-color;
+    font-size: 17px;
+    font-weight: 600;
 }
 
 .news {
     width: 270px;
     height: 240px;
     margin: 20px 10px;
-    background-color: white;
+    background-color: $header-border-color;
     padding: 15px;
     position: relative;
 
@@ -76,4 +58,57 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.slick-initialized .slick-slide {
+    display: flex;
+    justify-content: center;
+}
+  
+// .nav-btn {
+//     height: 47px;
+//     position: absolute;
+//     width: 26px;
+// }
+  
+// .prev-slide.slick-disabled,
+// .next-slide.slick-disabled {
+//     pointer-events: none;
+//     opacity: 0.5;
+// }
+  
+// .prev-slide {
+//     background-image: url(src/assets/images/nav-icon-prev.png) no-repeat scroll 0 0;
+// }
+  
+// .next-slide {
+//     background-image: url(src/assets/images/nav-icon-next.png) no-repeat scroll -24px 0px;
+// }
+  
+// .prev-slide:hover {
+//     background-position: 0px -53px;
+// }
+  
+// .next-slide:hover {
+//     background-position: -24px -53px;
+// }
+
+@media only screen and (max-width: 600px) {
+    .mat-accordion .mat-expansion-panel:last-of-type {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .news {
+        width: 200px;
+        height: 200px;
+    }
+
+    .img-wrapper {
+        img {
+            width: 200px;
+            height: 80px;
+        }
+    }
 }
