@@ -16,6 +16,8 @@ export class DataService {
 
   private countryChangedSubject = new Subject<string>();
 
+  private searchedTextChangedSubject = new Subject<string>();
+
 
   constructor(public http: HttpClient) { }
 
@@ -24,8 +26,16 @@ export class DataService {
     return this.countryChangedSubject.asObservable();
   }
 
+  searchedTextChangedObservable(): Observable<string> {
+    return this.searchedTextChangedSubject.asObservable();
+  }
+
   countryChangedNotify(country: string) {
     return this.countryChangedSubject.next(country);
+  }
+
+  searchedTextChangedNotify(searchedText: string) {
+    return this.searchedTextChangedSubject.next(searchedText);
   }
 
   setCountry(country: string) {
@@ -39,6 +49,10 @@ export class DataService {
       this.activeGB = false;
       this.activeUS = true;
     }
+  }
+
+  setSearchedText(searchedText: string) {
+    this.searchedTextChangedNotify(searchedText);
   }
 
   getCountryTopNews(countryAbbreviation: string): Observable<Articles[]> {
@@ -57,6 +71,20 @@ export class DataService {
 
   getCategoryTopNews(category: string): Observable<Articles[]> {
     return this.http.get<News>(`https://newsapi.org/v2/top-headlines?category=${category}&apiKey=cf9c0a24aed7448aaafaef9313c9f39f`)
+    .pipe(
+      map(data => {
+        return data.articles.map((item, index) => {
+          item.customId = index + 1;
+          return item;
+        })
+      }),
+      tap(data => this.allArticles = data),
+      catchError(this.handleError)
+    )
+  }
+
+  getSearchedNews(searchedText: string): Observable<Articles[]> {
+    return this.http.get<News>(`https://newsapi.org/v2/everything?q=${searchedText}&apiKey=cf9c0a24aed7448aaafaef9313c9f39f`)
     .pipe(
       map(data => {
         return data.articles.map((item, index) => {

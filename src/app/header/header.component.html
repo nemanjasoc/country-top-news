@@ -5,7 +5,7 @@
             <span class="nav-title">Top News</span>
             <a class="home-link" [routerLink]="['/top-news']">Home</a>
             <form>
-                <input type="text" placeholder="Search">
+                <input type="text" placeholder="Search" (keyup.enter)="getSearchedText($event)">
             </form>
         </div>
 
@@ -26,7 +26,7 @@
     <div class="dropdown-menu" *ngIf="showDropdownMenu">
         <a class="home-link" [routerLink]="['/top-news']">Home</a>
         <form>
-            <input type="text" placeholder="Search">
+            <input type="text" placeholder="Search" (keyup.enter)="getSearchedText($event)">
         </form>
         <div class="country-buttons-dropdown">
             <button mat-button (click)="onClickCountry('gb')" [class.active]="dataService.activeGB">GB</button>
