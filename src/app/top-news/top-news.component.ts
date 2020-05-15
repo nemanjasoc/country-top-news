@@ -11,6 +11,8 @@ export class TopNewsComponent implements OnInit, OnDestroy {
   articles: Articles[];
   errorMessage: string;
 
+  lastCountryData: string;
+
   countryChangedSubscription: Subscription;
 
   searchedTextChangedSubscription: Subscription;
@@ -34,25 +36,30 @@ export class TopNewsComponent implements OnInit, OnDestroy {
   subscribeToSearchedTextChanged() {
     this.searchedTextChangedSubscription = this.dataService.searchedTextChangedObservable()
       .subscribe(result => {
-        this.refreshSearchedTextData(result);
+        if (result && result.trim().length) {
+          this.refreshSearchedTextData(result);
+        } else {
+          this.refreshCountryData(this.lastCountryData);
+        }
       });
   }
 
   refreshCountryData(country: string) {
+    this.lastCountryData = country;
     this.dataService.getCountryTopNews(country).subscribe(data => {
-      this.articles = data.slice(0, 5);
-    }, 
-    err => this.errorMessage = err)
+      this.articles = data;
+    },
+      err => this.errorMessage = err);
   }
 
   refreshSearchedTextData(searchedText: string) {
     this.dataService.getSearchedNews(searchedText).subscribe(data => {
       this.articles = data;
-    }, 
-    err => this.errorMessage = err)
+    },
+      err => this.errorMessage = err)
   }
 
-  ngOnDestroy() { 
+  ngOnDestroy() {
     this.countryChangedSubscription.unsubscribe();
     this.searchedTextChangedSubscription.unsubscribe();
   }

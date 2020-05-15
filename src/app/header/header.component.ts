@@ -15,7 +15,7 @@ export class HeaderComponent {
     this.dataService.setCountry(country);
   }
 
-  getSearchedText(event): void {
+  onEnterSearchedText(event): void {
     this.dataService.setSearchedText(event.target.value);
   }
 

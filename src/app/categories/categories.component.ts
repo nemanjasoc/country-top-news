@@ -20,7 +20,6 @@ export class CategoriesComponent implements OnInit {
   articles: Articles[] = [];
   errorMessage: string;
   expandedCategory: string;
-  expanded: boolean = false;
 
   loading = false;
 

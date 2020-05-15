@@ -1,7 +1,6 @@
 @import 'src/scss/variables';
 
 .container {
-    background-color: $header-border-color;
     padding: 20px;
 }
 
@@ -63,10 +62,14 @@
 }
 
 .news-title {
-    display: flex;
     text-align: justify;
     font-size: 14px;
     font-weight: 600;
+    overflow: hidden;
+    width: 270px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
 .news-content {
@@ -75,4 +78,22 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+@media only screen and (max-width: 400px) {
+    .news {
+        width: 240px;
+        height: 220px;
+    }
+
+    .news-title {
+        width: 240px;
+    }
+
+    .img-wrapper {
+        img {
+            width: 240px;
+            height: 100px;
+        }
+    }
 }

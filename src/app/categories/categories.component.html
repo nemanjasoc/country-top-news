@@ -1,14 +1,15 @@
-<mat-accordion *ngFor="let category of categoryNames">
-    <mat-expansion-panel (click)="onClickCategoryExpand(category.category_name)">
+<mat-accordion>
+    <mat-expansion-panel *ngFor="let category of categoryNames" (opened)="onClickCategoryExpand(category.category_name)">
         <mat-expansion-panel-header>
             <mat-panel-title>
                 <span class="category-name">{{ category.category_name }}</span>
             </mat-panel-title>
         </mat-expansion-panel-header>
 
-        <!-- <mat-spinner *ngIf="loading && expandedCategory === category.category_name"></mat-spinner> -->
+        <mat-spinner *ngIf="loading" style="margin:0 auto;"></mat-spinner>
 
         <ngx-slick-carousel 
+            *ngIf="!loading && articles.length"
             class="carousel" 
             #slickModal="slick-carousel" 
             [config]="slideConfig">
@@ -26,5 +27,7 @@
                 </div>
             </div>
         </ngx-slick-carousel>
+
+        <div *ngIf="!articles.length && !loading" class="no-article-data">No news</div>
     </mat-expansion-panel>
 </mat-accordion> 
