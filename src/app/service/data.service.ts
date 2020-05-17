@@ -18,6 +18,8 @@ export class DataService {
 
   private searchedTextChangedSubject = new Subject<string>();
 
+  private categoryChangedSubject = new Subject<string>();
+
 
   constructor(public http: HttpClient) { }
 
@@ -30,12 +32,20 @@ export class DataService {
     return this.searchedTextChangedSubject.asObservable();
   }
 
+  categoryChangedObservable(): Observable<string> {
+    return this.categoryChangedSubject.asObservable();
+  }
+
   countryChangedNotify(country: string) {
     return this.countryChangedSubject.next(country);
   }
 
   searchedTextChangedNotify(searchedText: string) {
     return this.searchedTextChangedSubject.next(searchedText);
+  }
+
+  categoryChangedNotify(category: string) {
+    return this.categoryChangedSubject.next(category);
   }
 
   setCountry(country: string) {
@@ -55,22 +65,26 @@ export class DataService {
     this.searchedTextChangedNotify(searchedText);
   }
 
-  getCountryTopNews(countryAbbreviation: string): Observable<Articles[]> {
-    return this.http.get<News>(`https://newsapi.org/v2/top-headlines?country=${countryAbbreviation}&apiKey=cf9c0a24aed7448aaafaef9313c9f39f`)
-      .pipe(
-        map(data => {
-          return data.articles.map((item, index) => {
-            item.customId = index + 1;
-            return item;
-          })
-        }),
-        tap(data => this.allArticles = data),
-        catchError(this.handleError)
-      )
+  setCategory(category: string) {
+    this.categoryChangedNotify(category);
   }
 
-  getCategoryTopNews(category: string): Observable<Articles[]> {
-    return this.http.get<News>(`https://newsapi.org/v2/top-headlines?category=${category}&apiKey=cf9c0a24aed7448aaafaef9313c9f39f`)
+  getCountryTopNews(countryAbbreviation: string): Observable<Articles[]> {
+    return this.http.get<News>(`https://newsapi.org/v2/top-headlines?country=${countryAbbreviation}&apiKey=cf9c0a24aed7448aaafaef9313c9f39f`)
+    .pipe(
+      map(data => {
+        return data.articles.map((item, index) => {
+          item.customId = index + 1;
+          return item;
+        })
+      }),
+      tap(data => this.allArticles = data),
+      catchError(this.handleError)
+    )
+  }
+
+  getCategoryTopNews(category: string, country: string): Observable<Articles[]> {
+    return this.http.get<News>(`https://newsapi.org/v2/top-headlines?category=${category}&country=${country}&apiKey=cf9c0a24aed7448aaafaef9313c9f39f`)
     .pipe(
       map(data => {
         return data.articles.map((item, index) => {

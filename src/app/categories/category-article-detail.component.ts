@@ -19,7 +19,7 @@ export class CategoryArticleDetailComponent implements OnInit {
     if (this.dataService.allArticles) {
       this.article = this.dataService.allArticles.find(item => item.customId === id);
     } else {
-      this.dataService.getCategoryTopNews('entertainment').subscribe(data => {
+      this.dataService.getCategoryTopNews('entertainment', 'gb').subscribe(data => {
         this.article = data.find(item => item.customId === id);
       });
     }
