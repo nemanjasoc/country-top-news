@@ -8,10 +8,13 @@ import { Articles } from '../top-news/top-news';
   templateUrl: './category-article-detail.component.html',
   styleUrls: ['./category-article-detail.component.scss']
 })
+
 export class CategoryArticleDetailComponent implements OnInit {
   article: Articles;
+  
 
   constructor(private route: ActivatedRoute, public dataService: DataService) { }
+
 
   ngOnInit(): void {
     let id = Number(this.route.snapshot.paramMap.get('id'));
@@ -25,4 +28,5 @@ export class CategoryArticleDetailComponent implements OnInit {
     }
 
   }
+  
 }

@@ -24,11 +24,24 @@ export class DataService {
     return this.searchedTextChangedSubject.next(searchedText);
   }
 
-
   setSearchedText(searchedText: string) {
     this.searchedTextChangedNotify(searchedText);
   }
 
+
+  getSearchedNews(searchedText: string): Observable<Articles[]> {
+    return this.http.get<News>(`https://newsapi.org/v2/everything?q=${searchedText}&apiKey=cf9c0a24aed7448aaafaef9313c9f39f`)
+      .pipe(
+        map(data => {
+          return data.articles.map((item, index) => {
+            item.customId = index + 1;
+            return item;
+          });
+        }),
+        tap(data => this.allArticles = data),
+        catchError(this.handleError)
+      );
+  }
 
   getTopNews(countryAbbreviation: string): Observable<Articles[]> {
     return this.http.get<News>(`https://newsapi.org/v2/top-headlines?country=${countryAbbreviation}&apiKey=cf9c0a24aed7448aaafaef9313c9f39f`)
@@ -46,20 +59,6 @@ export class DataService {
 
   getCategoryTopNews(category: string, country: string): Observable<Articles[]> {
     return this.http.get<News>(`https://newsapi.org/v2/top-headlines?category=${category}&country=${country}&apiKey=cf9c0a24aed7448aaafaef9313c9f39f`)
-      .pipe(
-        map(data => {
-          return data.articles.map((item, index) => {
-            item.customId = index + 1;
-            return item;
-          });
-        }),
-        tap(data => this.allArticles = data),
-        catchError(this.handleError)
-      );
-  }
-
-  getSearchedNews(searchedText: string): Observable<Articles[]> {
-    return this.http.get<News>(`https://newsapi.org/v2/everything?q=${searchedText}&apiKey=cf9c0a24aed7448aaafaef9313c9f39f`)
       .pipe(
         map(data => {
           return data.articles.map((item, index) => {

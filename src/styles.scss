@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "~font-awesome/css/font-awesome.min.css";
+@import 'src/scss/variables';
 
 html {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -10,7 +11,7 @@ html {
 
 body {
     margin: 0;
-    background-color: #e6e6e6;
+    background-color: $header-border-color;
 }
 
 ul {
@@ -20,4 +21,117 @@ ul {
 
 li {
     display: inline-block;
+}
+
+/*top-news and category*/
+
+.news {
+    width: 270px;
+    height: 240px;
+    margin: 20px 10px;
+    padding: 15px;
+    position: relative;
+
+    a {
+        text-decoration: none;
+        color: $header-main-color;
+        font-weight: 600;
+        position: absolute;
+        bottom: 8px;
+        right: 15px;
+    }
+}
+
+.img-wrapper {
+    display: flex;
+    justify-content: center;
+
+    img {
+        height: 120px;
+        margin: 10px 0 0 0;
+    }
+}
+
+.error-message {
+    font-size: 18px;
+    font-weight: 600;
+    position: absolute;
+    top: 50%;
+}
+
+.news-title {
+    text-align: justify;
+    font-size: 14px;
+    font-weight: 600;
+    overflow: hidden;
+    width: 270px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.news-content {
+    text-align: justify;
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/*article-detail and category-article-detail*/
+
+section {
+    padding: 70px;
+}
+
+.thumbnail {
+    padding: 15px;
+    background-color: $news-white-color;
+    
+    img {
+        width: 100%;
+        margin: 20px 0 0 0;
+    }
+}
+
+.article-title {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.article-content {
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 500;
+}
+
+@media only screen and (max-width: 600px) {
+    section {
+        padding: 60px;
+    }
+
+    .article-title {
+        font-size: 26px;
+    }
+    
+    .article-content {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    section {
+        padding: 50px;
+    }
+
+    .article-title {
+        font-size: 20px;
+    }
+    
+    .article-content {
+        font-size: 12px;
+    }
 }

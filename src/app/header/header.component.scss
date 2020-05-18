@@ -25,7 +25,7 @@ nav {
         font-size: 22px;
         color: $header-main-color;
         padding: 0 25px;
-        background-color: white;
+        background-color: $news-white-color;
     }
     
     input[type=text] {
@@ -37,7 +37,7 @@ nav {
         line-height: 70px;
         padding: 0 5px;
         background-color: #252a67;
-        color: white;
+        color: $news-white-color;
     }
 }
 
@@ -45,13 +45,13 @@ nav {
 .home-link {
     display: flex;
     justify-content: center;
-    color: white;
+    color: $news-white-color;
     width: 70px;
     position: relative;
     text-decoration: none;
     padding: 0 25px;
     cursor: pointer;
-    @include transition(all 0.3s ease-in-out 0s);
+    @include transition(all 0.2s ease-in-out 0s);
 
     &:before {
         content: '';
@@ -59,10 +59,10 @@ nav {
         width: 77px;
         height: 1px;
         top: 45px;
-        background-color: white;
+        background-color: $news-white-color;
         visibility: hidden;
         @include transform(scaleX(0));
-        @include transition(all 0.3s ease-in-out 0s);
+        @include transition(all 0.2s ease-in-out 0s);
     }
 
     &.active,
@@ -74,14 +74,14 @@ nav {
     }
 
     &.active {
-        color: white;
+        color: $news-white-color;
     }
 }
 
 .home-link {
     &:before {
         width: 42px;
-        border-left: 1px solid white;
+        border-left: 1px solid $news-white-color;
     }
 }
 
@@ -96,21 +96,21 @@ nav {
     height: 100%;
     width: 70px;
     background-color: $header-main-color;
-    color: white;
+    color: $news-white-color;
     outline: none;
     border-color: $header-border-color;
     border-width: 0 0 0 1px;
     font-weight: 600;
     cursor: pointer;
-    @include transition(all 0.3s ease-in-out 0s);
+    @include transition(all 0.2s ease-in-out 0s);
 
     &.active {
-        background-color: white;
+        background-color: $news-white-color;
         color: $header-main-color;
         border: none;
     }
 
-    &.disabled {
+    &:disabled {
         opacity: 0.2;
         pointer-events: none;
     }
@@ -131,7 +131,7 @@ nav {
         font-size: 22px;
         color: $header-main-color;
         padding: 0 25px;
-        background-color: white;
+        background-color: $news-white-color;
     }
 
     .dropdown-menu {
@@ -171,10 +171,10 @@ nav {
         align-items: center;
         border-left: 1px solid $header-border-color;
         cursor: pointer;
-        @include transition(all 0.3s ease-in-out 0s);
+        @include transition(all 0.2s ease-in-out 0s);
 
         &.active {
-            background-color: white;
+            background-color: $news-white-color;
 
             .fa-times {
                 color: $header-main-color;
@@ -187,7 +187,7 @@ nav {
     .fa-bars {
         cursor: pointer;
         font-size: 20px;
-        color: white;
+        color: $news-white-color;
     }
 
     .country-buttons-dropdown {
@@ -197,12 +197,17 @@ nav {
         margin-bottom: 20px;
 
         button {
-            border: 1px solid white;
-            color: white;
+            border: 1px solid $news-white-color;
+            color: $news-white-color;
 
             &.active {
                 color: $header-main-color;
-                background-color: white;
+                background-color: $news-white-color;
+            }
+
+            &:disabled {
+                opacity: 0.2;
+                pointer-events: none;
             }
         }
     }

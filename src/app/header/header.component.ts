@@ -9,6 +9,7 @@ import { LanguageService } from '../service/language.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
+
 export class HeaderComponent {
   showDropdownMenu = false;
   disableLanguageSelection = false;

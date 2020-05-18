@@ -9,17 +9,19 @@ import { Articles } from './top-news';
   templateUrl: './top-news.component.html',
   styleUrls: ['./top-news.component.scss']
 })
+
 export class TopNewsComponent implements OnInit, OnDestroy {
   articles: Articles[];
   errorMessage: string;
-
   lastCountryData: string;
 
   languageChangedSubscription: Subscription;
   searchedTextChangedSubscription: Subscription;
 
+
   constructor(public dataService: DataService,
     public LanguageService: LanguageService) { }
+    
 
   ngOnInit(): void {
     this.subscribeToLanguageChange();
@@ -65,4 +67,5 @@ export class TopNewsComponent implements OnInit, OnDestroy {
     this.languageChangedSubscription.unsubscribe();
     this.searchedTextChangedSubscription.unsubscribe();
   }
+
 }

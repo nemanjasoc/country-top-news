@@ -11,12 +11,24 @@
         </div>
 
         <div class="right-side-nav">
-            <button class="nav-button-gb" [disabled]="disableLanguageSelection" (click)="onChangeLanguage('gb')" [class.active]="languageService.currentSelectedLanguage.key === 'gb'">GB</button>
-            <button class="nav-button-us" [disabled]="disableLanguageSelection" (click)="onChangeLanguage('us')" [class.active]="languageService.currentSelectedLanguage.key === 'us'">US</button>
+            <button class="nav-button-gb" 
+                [disabled]="disableLanguageSelection" 
+                (click)="onChangeLanguage('gb')" 
+                [class.active]="languageService.currentSelectedLanguage.key === 'gb'">
+                GB
+            </button>
+            <button class="nav-button-us" 
+                [disabled]="disableLanguageSelection" 
+                (click)="onChangeLanguage('us')" 
+                [class.active]="languageService.currentSelectedLanguage.key === 'us'">
+                US
+            </button>
         </div>
 
         <div class="menu-bar">
-            <div class="dropbtn" [class.active]="showDropdownMenu" (click)="showDropdownMenu = !showDropdownMenu">
+            <div class="dropbtn" 
+                [class.active]="showDropdownMenu" 
+                (click)="showDropdownMenu = !showDropdownMenu">
                 <i class="fa fa-bars" aria-hidden="true" *ngIf="!showDropdownMenu" ></i>
                 <i class="fa fa-times" aria-hidden="true" *ngIf="showDropdownMenu"></i>
             </div>
@@ -30,8 +42,18 @@
             <input type="text" placeholder="Search" (keyup.enter)="onEnterSearchedText($event)">
         </form>
         <div class="country-buttons-dropdown">
-            <button mat-button [disabled]="disableLanguageSelection" (click)="onChangeLanguage('gb')" [class.active]="languageService.currentSelectedLanguage.key === 'gb'">GB</button>
-            <button mat-button [disabled]="disableLanguageSelection" (click)="onChangeLanguage('us')" [class.active]="languageService.currentSelectedLanguage.key === 'us'">US</button>
+            <button mat-button 
+                [disabled]="disableLanguageSelection" 
+                (click)="onChangeLanguage('gb')" 
+                [class.active]="languageService.currentSelectedLanguage.key === 'gb'">
+                GB
+            </button>
+            <button mat-button 
+                [disabled]="disableLanguageSelection" 
+                (click)="onChangeLanguage('us')" 
+                [class.active]="languageService.currentSelectedLanguage.key === 'us'">
+                US
+            </button>
         </div>
     </div>
 </header>

@@ -9,6 +9,7 @@ import { Articles } from '../top-news/top-news';
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.scss']
 })
+
 export class CategoriesComponent implements OnInit {
   categoryNames: Category[] = [
     { category_name: 'Entertainment' },
@@ -22,8 +23,6 @@ export class CategoriesComponent implements OnInit {
   articles: Articles[] = [];
   errorMessage: string;
   expandedCategory: string;
-  lastCountryData: string;
-  lastCategoryData: string;
   loading = false;
 
 

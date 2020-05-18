@@ -19,7 +19,7 @@
                     <div class="img-wrapper">
                         <img *ngIf="article.urlToImage !== null" [src]="article.urlToImage">
                         <span class="error-message" *ngIf="article.urlToImage === null">
-                            Image doesn't exist
+                            Image doesn't exist!
                         </span>
                     </div>
                     <p class="news-content">{{ article.description }}</p>

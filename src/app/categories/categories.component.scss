@@ -1,13 +1,5 @@
 @import 'src/scss/variables';
 
-.no-article-data {
-  width: 100%;
-  min-height: 60px;
-  text-align: center;
-  font-size: 36px;
-  font-weight: bold;
-}
-
 .category-name {
     margin-right: 15px;
     color: $header-main-color;
@@ -16,61 +8,21 @@
 }
 
 .news {
-    width: 270px;
-    height: 240px;
-    margin: 20px 10px;
     background-color: $header-border-color;
-    padding: 15px;
-    position: relative;
-
-    a {
-        text-decoration: none;
-        color: $header-main-color;
-        font-weight: 600;
-        position: absolute;
-        bottom: 8px;
-        right: 15px;
-    }
-}
-
-.img-wrapper {
-    display: flex;
-    justify-content: center;
-
-    img {
-        width: 270px;
-        height: 120px;
-        margin: 10px 0 0 0;
-    }
-}
-
-.error-message {
-    margin-top: 30px;
-}
-
-.news-title {
-    text-align: justify;
-    font-size: 14px;
-    font-weight: 600;
-    overflow: hidden;
-    width: 270px;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-}
-
-.news-content {
-    text-align: justify;
-    font-size: 12px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
 .slick-initialized .slick-slide {
     display: flex;
     justify-content: center;
     outline: none;
+}
+
+.no-article-data {
+    width: 100%;
+    min-height: 60px;
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
 }
 
 @media only screen and (max-width: 400px) {
@@ -85,7 +37,6 @@
 
     .img-wrapper {
         img {
-            width: 200px;
             height: 80px;
         }
     }

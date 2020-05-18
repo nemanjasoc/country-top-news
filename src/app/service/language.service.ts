@@ -30,8 +30,8 @@ export class LanguageService {
     return this.languageChangedSubject.asObservable();
   }
 
-  languageChangedNotify(country: string) {
-    return this.languageChangedSubject.next(country);
+  languageChangedNotify(languageKey: string) {
+    return this.languageChangedSubject.next(languageKey);
   }
 
   changeLanguage(languageKey: string) {
