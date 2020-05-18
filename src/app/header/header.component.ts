@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 import { DataService } from '../service/data.service';
+import { LanguageService } from '../service/language.service';
 
 @Component({
   selector: 'app-header',
@@ -7,12 +10,26 @@ import { DataService } from '../service/data.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  showDropdownMenu: boolean = false;
+  showDropdownMenu = false;
+  disableLanguageSelection = false;
 
-  constructor(public dataService: DataService) { }
+  constructor(private router: Router,
+    public dataService: DataService,
+    public languageService: LanguageService) {
 
-  onClickCountry(country: string): void {
-    this.dataService.setCountry(country);
+    router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      if (event.url === '/categories' || event.url === '/top-news') {
+        this.disableLanguageSelection = false;
+      } else {
+        this.disableLanguageSelection = true;
+      }
+    });
+  }
+
+  onChangeLanguage(languageKey: string): void {
+    this.languageService.changeLanguage(languageKey);
   }
 
   onEnterSearchedText(event): void {

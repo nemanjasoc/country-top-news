@@ -14,12 +14,12 @@ export class ArticleDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute, public dataService: DataService) { }
 
   ngOnInit(): void {
-    let id = Number(this.route.snapshot.paramMap.get('id'));
+    const id = Number(this.route.snapshot.paramMap.get('id'));
 
     if (this.dataService.allArticles) {
       this.article = this.dataService.allArticles.find(item => item.customId === id);
     } else {
-      this.dataService.getCountryTopNews('gb').subscribe(data => {
+      this.dataService.getTopNews('gb').subscribe(data => {
         this.article = data.find(item => item.customId === id);
       });
     }

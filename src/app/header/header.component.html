@@ -11,8 +11,8 @@
         </div>
 
         <div class="right-side-nav">
-            <button class="nav-button-gb" (click)="onClickCountry('gb')" [class.active]="dataService.activeGB">GB</button>
-            <button class="nav-button-us" (click)="onClickCountry('us')" [class.active]="dataService.activeUS">US</button>
+            <button class="nav-button-gb" [disabled]="disableLanguageSelection" (click)="onChangeLanguage('gb')" [class.active]="languageService.currentSelectedLanguage.key === 'gb'">GB</button>
+            <button class="nav-button-us" [disabled]="disableLanguageSelection" (click)="onChangeLanguage('us')" [class.active]="languageService.currentSelectedLanguage.key === 'us'">US</button>
         </div>
 
         <div class="menu-bar">
@@ -30,8 +30,8 @@
             <input type="text" placeholder="Search" (keyup.enter)="onEnterSearchedText($event)">
         </form>
         <div class="country-buttons-dropdown">
-            <button mat-button (click)="onClickCountry('gb')" [class.active]="dataService.activeGB">GB</button>
-            <button mat-button (click)="onClickCountry('us')" [class.active]="dataService.activeUS">US</button>
+            <button mat-button [disabled]="disableLanguageSelection" (click)="onChangeLanguage('gb')" [class.active]="languageService.currentSelectedLanguage.key === 'gb'">GB</button>
+            <button mat-button [disabled]="disableLanguageSelection" (click)="onChangeLanguage('us')" [class.active]="languageService.currentSelectedLanguage.key === 'us'">US</button>
         </div>
     </div>
 </header>

@@ -1,7 +1,7 @@
 <div class="container">
     <div class="main-title-wrapper">
         <i class="fa fa-circle" aria-hidden="true"></i>
-        <span class="main-title">Top news from {{ dataService.countryName}}</span>
+        <span class="main-title">Top news from {{ LanguageService.currentSelectedLanguage.country}}</span>
     </div>
     <div class="top-news">
         <div class="news" *ngFor="let article of articles">

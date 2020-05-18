@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DataService } from '../service/data.service';
+import { LanguageService } from '../service/language.service';
+
 import { Articles } from './top-news';
 
 @Component({
@@ -13,23 +15,23 @@ export class TopNewsComponent implements OnInit, OnDestroy {
 
   lastCountryData: string;
 
-  countryChangedSubscription: Subscription;
-
+  languageChangedSubscription: Subscription;
   searchedTextChangedSubscription: Subscription;
 
-  constructor(public dataService: DataService) { }
+  constructor(public dataService: DataService,
+    public LanguageService: LanguageService) { }
 
   ngOnInit(): void {
-    this.subscribeToCountryChanged();
-    this.refreshCountryData('gb');
+    this.subscribeToLanguageChange();
+    this.refreshTopNewsData(this.LanguageService.currentSelectedLanguage.key);
     this.subscribeToSearchedTextChanged();
-    this.refreshSearchedTextData("bitcoin");
+    this.refreshSearchedTextData('bitcoin');
   }
 
-  subscribeToCountryChanged() {
-    this.countryChangedSubscription = this.dataService.countryChangedObservable()
+  subscribeToLanguageChange() {
+    this.languageChangedSubscription = this.LanguageService.languageChangedObservable()
       .subscribe(result => {
-        this.refreshCountryData(result);
+        this.refreshTopNewsData(result);
       });
   }
 
@@ -39,14 +41,14 @@ export class TopNewsComponent implements OnInit, OnDestroy {
         if (result && result.trim().length) {
           this.refreshSearchedTextData(result);
         } else {
-          this.refreshCountryData(this.lastCountryData);
+          this.refreshTopNewsData(this.lastCountryData);
         }
       });
   }
 
-  refreshCountryData(country: string) {
+  refreshTopNewsData(country: string) {
     this.lastCountryData = country;
-    this.dataService.getCountryTopNews(country).subscribe(data => {
+    this.dataService.getTopNews(country).subscribe(data => {
       this.articles = data;
     },
       err => this.errorMessage = err);
@@ -56,11 +58,11 @@ export class TopNewsComponent implements OnInit, OnDestroy {
     this.dataService.getSearchedNews(searchedText).subscribe(data => {
       this.articles = data;
     },
-      err => this.errorMessage = err)
+      err => this.errorMessage = err);
   }
 
   ngOnDestroy() {
-    this.countryChangedSubscription.unsubscribe();
+    this.languageChangedSubscription.unsubscribe();
     this.searchedTextChangedSubscription.unsubscribe();
   }
 }
