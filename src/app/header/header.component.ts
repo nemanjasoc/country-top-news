@@ -21,7 +21,7 @@ export class HeaderComponent {
     router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: NavigationEnd) => {
-      if (event.url === '/categories' || event.url === '/top-news') {
+      if (event.url === '/' || event.url === '/top-news' || event.url === '/categories') {
         this.disableLanguageSelection = false;
       } else {
         this.disableLanguageSelection = true;
